@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Header from '@/components/Header'
-import Home from '@/components/Home'
-import About from '@/components/About'
-import Note from '@/components/Note'
 
 Vue.use(Router)
 
@@ -16,27 +12,45 @@ export default new Router({
     },
     {
       path: '/index',
-      name: 'index',
-      components: {
-        header:Header,
-        main:Home
-      }
+      name: 'Index',
+      component: () => import ('@/pages/front/index'),
+      children: [
+        {
+          path: 'index',
+          name: 'index',
+          component: () => import('@/pages/front/index')
+        },
+        {
+          path: 'about',
+          name: 'About',
+          component: () => import('@/pages/front/about')
+        },
+        {
+          path: 'note',
+          name: 'Note',
+          component: () => import('@/pages/front/note')
+        },
+      ]
+
     },
     {
-      path: '/about',
-      name: 'about',
-      components: {
-        header:Header,
-        main:About
-      }
-    },
-    {
-      path: '/note',
-      name: 'note',
-      components: {
-        header: Header,
-        main: Note
-      }
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('@/pages/admin/index'),
+      children: [
+        {
+          path: 'admin',
+          name: 'Admin',
+          component: () => import('@/pages/admin/index.vue')
+        },
+        {
+          path: 'test',
+          name: 'Test',
+          component: () => import('@/pages/admin/test.vue')
+        },
+
+      ]
+
     }
   ]
 })
