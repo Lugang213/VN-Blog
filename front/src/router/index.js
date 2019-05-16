@@ -21,6 +21,11 @@ export default new Router({
           component: () => import('@/pages/front/index')
         },
         {
+          path: 'home',
+          name: 'Home',
+          component: () => import('@/pages/front/home')
+        },
+        {
           path: 'about',
           name: 'About',
           component: () => import('@/pages/front/about')
@@ -51,6 +56,15 @@ export default new Router({
 
       ]
 
+    },
+    {
+      path: '/articlelist',
+      component: () => import('@/pages/front/articleList.vue')
+    },
+    {
+      path: '/test',
+      name: 'Test',
+      component: () => import('@/pages/front/test.vue')
     }
   ]
 })
