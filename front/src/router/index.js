@@ -8,11 +8,11 @@ export default new Router({
   routes: [
     {
       path: '/',
-      redirect: '/index'
+      redirect: '/index/home'
     },
     {
       path: '/index',
-      name: 'Index',
+      name: 'Index', redirect: '/index/home',
       component: () => import ('@/pages/front/index'),
       children: [
         {
@@ -22,7 +22,7 @@ export default new Router({
         },
         {
           path: 'home',
-          name: 'Home',
+          name: 'home',
           component: () => import('@/pages/front/home')
         },
         {
@@ -31,9 +31,14 @@ export default new Router({
           component: () => import('@/pages/front/about')
         },
         {
-          path: 'note',
-          name: 'Note',
-          component: () => import('@/pages/front/note')
+          path: 'article-list',
+          name: 'ArticleList',
+          component: () => import('@/pages/front/articleList')
+        },
+        {
+          path: 'msg-board',
+          name: 'Msg-board',
+          component: () => import('@/pages/front/msgBoard')
         },
       ]
 
@@ -56,10 +61,6 @@ export default new Router({
 
       ]
 
-    },
-    {
-      path: '/articlelist',
-      component: () => import('@/pages/front/articleList.vue')
     },
     {
       path: '/test',

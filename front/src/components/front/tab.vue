@@ -16,15 +16,16 @@
 			<div class = "nav-body" :class = "{heightZero: show}">
 				<ul class = "nav-list" >
 					<li v-for = "(item,index) in tabs" :key="item" >
-						<router-link :to = "{name: item.name}" tag = "div">
-							<span class = "bg-box"  @click.stop = "goAnchor(item.name,index)">
+						<router-link class="nav-link" :to = "item.path">
+							<span class = "bg-box"  @click.stop = "goAnchor(item.path,index)">
 								<span class = "span-box">
 									<span :class = "item.icon" class = "icon-rt"></span>
-									<span class = "r-t">{{ item.render }}</span>
+									<span :class="navIndex===index ? 'item-cn item-cn-active' : 'item-cn'">{{ item.render }}</span>
 								</span>
 							</span>
 						</router-link>
 					</li>
+
 				</ul>
 				<div class = "search">
 					<input type = "text" placeholder = "请输入关键词" v-model = "searchKey" @keyup.enter = "search">
@@ -48,17 +49,28 @@
 				searchKey: "",
 				scrollFlag: 0,
 				routeName: "",
-				intervalId: "",
-				tabs: [{name: "home",render: "首页",icon: "icon-home"},{name: "article",render: "文章",icon: "icon-book"},{name: "msgboard",render: "留言",icon: "icon-messages"},{name: "life",render: "生活",icon: "icon-images"}]
+        intervalId: "",
+        tabs: [
+          {name: "home",render: "首页",icon: "icon-home",path:"/index"},
+          {name: "article",render: "文章",icon: "icon-book",path: '/index/article-list'},
+          {name: "msgboard",render: "留言",icon: "icon-messages",path: "/index/msg-board"},
+          {name: "life",render: "生活",icon: "icon-images",path:"/index/life"}
+        ],
+        navIndex: 1,
 			}
 		},
-		mounted(){
-			requestAnimation()
+		mounted:{
+      // requestAnimation(),
 		},
 		// computed: {
 		// 	...mapState(["tabBg","anchorScroll"])
-		// },
+    // },
+
 		methods: {
+      checkRouterLocal(path) {
+        // 查找当前路由下标高亮
+        this.navIndex = this.nav.findIndex(item => item.path === path);
+      },
 			...mapMutations(["changeRtActive"]),
 			navShow(){
 				this.show = !this.show;
@@ -100,10 +112,29 @@
 				this.routeName = route
 				this.intervalId = window.requestAnimationFrame(this.callback)
 			}
-		}
+    },
+     watch: {
+      "$route"() {
+        // 获取当前路径
+        let path = this.$route.path;
+        // 检索当前路径
+        this.checkRouterLocal(path);
+        console.log(path)
+      }
+    },
 	}
 </script>
 <style lang = "less">
+/*导航普通状态*/
+.item-en {
+  color: #666;
+  font-size: 12px;
+}
+
+/*导航高亮*/
+.item-cn-active {
+  color: #2d8cf0;
+}
 	.tab{
 		position: fixed;
 		top: 0;
@@ -131,6 +162,14 @@
 			height: 0!important
 		}
 	}
+  .nav-link{
+    display: block;
+    color: #fff;
+    font-size: 22px;
+    font: bold;
+    text-align: center;
+
+  }
 	.nav-body{
 		height: 50px
 	}
@@ -290,9 +329,10 @@
 			height: 50px;
 			li{
 				display: inline-block;
-				margin-left: 20px;
+				/* margin-left: 20px; */
+        margin: 15px;
 				width: 55px;
-				height: 50px;
+				height: 33px;
 				div{
 					transition: all ease 0.5s;
 					position: relative;

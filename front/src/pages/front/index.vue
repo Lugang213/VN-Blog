@@ -68,13 +68,13 @@
         }
       },
       watch: {
-        // $route(){
-        //   if(this.$route.name === "home"){
-        //     this.location = []
-        //   }
-        //   this.currentLocation(this.$route)
-        // },
-        //当articleShow组件的标题变化时，刷新当前位置的文章标题，防止当前文章显示上一篇文章的标题
+        $route(){
+          if(this.$route.name === "home"){
+            this.location = []
+          }
+          this.currentLocation(this.$route)
+        },
+        // 当articleShow组件的标题变化时，刷新当前位置的文章标题，防止当前文章显示上一篇文章的标题
         currentTitle(){
           this.currentLocation(this.$route)
         }
@@ -133,57 +133,58 @@
             func.apply(context,args)
           },delay)
         },
-        back: function(item){
-          let name = item.pathName
-          if(name === "techincal"){
-            this.$router.push({name: name,params: {articleList: item.params.tag}})
-          }else if(name === "articleShow"){
-            this.$router.push({name: name,params: {articleList: item.params.tag,id: item.params.id}})
-          }else if(name === "lifeShow"){
-            this.$router.push({name: name,params: {id: item.params.id}})
-          }else{
-            this.$router.push({name: name})
-          }
-        },
+        // back: function(item){
+        //   let name = item.pathName
+        //   if(name === "techincal"){
+        //     this.$router.push({name: name,params: {articleList: item.params.tag}})
+        //   }else if(name === "articleShow"){
+        //     this.$router.push({name: name,params: {articleList: item.params.tag,id: item.params.id}})
+        //   }else if(name === "lifeShow"){
+        //     this.$router.push({name: name,params: {id: item.params.id}})
+        //   }else{
+        //     this.$router.push({name: name})
+        //   }
+        // },
         backTop: function(){
           document.documentElement.scrollTop = 0
           document.body.scrollTop = 0
         },
         backHome: function(){
+
           this.location = []
           this.$router.push({name: "home"})
         },
         //当前位置的路由信息表
-        currentLocation: function(to){
-          switch(to.name){
-            case "article" :
-            this.location = [{pathName: "article",showName: "技术文章"}]
-            break
-            case "techincal" :
-            let tag = to.params.articleList
-            this.location = [{pathName: "article",showName: "技术文章"},{pathName: "techincal",showName: tag,params: {tag: tag}}]
-            break
-            case "articleShow" :
-            let _tag = to.params.articleList
-            this.location = [{pathName: "article",showName: "技术文章"},{pathName: "techincal",showName: _tag,params: {tag: _tag}},{pathName: "articleShow",showName: this.currentTitle,params: {tag: _tag,id: to.params.id}}]
-            break
-            case "life":
-            this.location = [{pathName: "life",showName: "生活"}]
-            break
-            case "lifeShow":
-            this.location = [{pathName: "life",showName: "生活"},{pathName: "lifeShow",showName: this.currentTitle,params: {id: to.params.id}}]
-            console.log(this.currentTitle)
-            break
-            case "msgboard":
-            this.location = [{pathName: "msgboard",showName: "留言板"}]
-            break
-            case "search":
-            this.location = [{pathName: "search",showName: "搜索"}]
-            break
-            case "timeLine":
-            this.location = [{pathName: "timeLine",showName: "时间轴"}]
-          }
-        }
+        // currentLocation: function(to){
+        //   switch(to.name){
+        //     case "article" :
+        //     this.location = [{pathName: "article",showName: "技术文章"}]
+        //     break
+        //     case "techincal" :
+        //     let tag = to.params.articleList
+        //     this.location = [{pathName: "article",showName: "技术文章"},{pathName: "techincal",showName: tag,params: {tag: tag}}]
+        //     break
+        //     case "articleShow" :
+        //     let _tag = to.params.articleList
+        //     this.location = [{pathName: "article",showName: "技术文章"},{pathName: "techincal",showName: _tag,params: {tag: _tag}},{pathName: "articleShow",showName: this.currentTitle,params: {tag: _tag,id: to.params.id}}]
+        //     break
+        //     case "life":
+        //     this.location = [{pathName: "life",showName: "生活"}]
+        //     break
+        //     case "lifeShow":
+        //     this.location = [{pathName: "life",showName: "生活"},{pathName: "lifeShow",showName: this.currentTitle,params: {id: to.params.id}}]
+        //     console.log(this.currentTitle)
+        //     break
+        //     case "msgboard":
+        //     this.location = [{pathName: "msgboard",showName: "留言板"}]
+        //     break
+        //     case "search":
+        //     this.location = [{pathName: "search",showName: "搜索"}]
+        //     break
+        //     case "timeLine":
+        //     this.location = [{pathName: "timeLine",showName: "时间轴"}]
+        //   }
+        // }
       }
   }
 </script>

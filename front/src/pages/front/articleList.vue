@@ -1,5 +1,5 @@
 <template>
-	<div class = "articleList">文章列表
+	<div class = "articleList">
     <ul>
 			<li class = "article-item">
 				<h2 class = "article-title">
@@ -26,7 +26,32 @@
 					<span class = "like-num">111</span>
 				</div>
 			</li>
-		</ul> -->
+      <li class = "article-item">
+				<h2 class = "article-title">
+					<a href = "javascript: void(0)">我的歌声里</a>
+				</h2>
+				<div class = "article-msg">
+					<span class = "icon-tag-stroke">音乐：</span>
+					<span class = "article-msg-tag">
+						<span> 1</span>
+					</span>
+					<span class = "icon-clock">日期：</span>
+					<span class = "article-msg-time">2019-02-01</span>
+				</div>
+				<div class = "article-review">
+					<!-- <div :class = "'default tag-bg-img ' + tagBg[index]"></div> -->
+					<div class = "article-abstract"><h4>爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远爱情差一天，都不算永远</h4></div>
+				</div>
+				<div class = "view-msg">
+					<span class = "icon-eye"></span>
+					<span class="pv">1222</span>
+					<span class = "icon-commenting-o"></span >
+					<span class = "comments-num">1232</span>
+					<span class = "icon-like"></span>
+					<span class = "like-num">111</span>
+				</div>
+			</li>
+		</ul>
 		<!-- <ul>
 			<li v-for = "(item,index) in articleList" :key="item" class = "article-item">
 				<h2 class = "article-title">

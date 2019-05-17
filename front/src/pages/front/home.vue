@@ -5,6 +5,7 @@
 		<!-- <loading v-if = "code === 404"></loading> -->
 		<!-- <h3 v-if = "articles.all.length === 0 && code === 200" class = "none-article">还没有文章，敬请期待···</h3> -->
 		<!-- <article-list :articleList = "articles.all"></article-list> -->
+    <article-list></article-list>
 	</div>
 </template>
 <script>
@@ -20,8 +21,8 @@
 		},
 		metaInfo(){
 			return {
-				title: "首页 -mapblog小站",
-				meta: [{vmid: "description",name: "description",content: "首页 -mapblog小站"}]
+				title: "首页 - 小白猿",
+				meta: [{vmid: "description",name: "description",content: "首页 - 小白猿"}]
 			}
 		},
 		asyncData({store,route}){

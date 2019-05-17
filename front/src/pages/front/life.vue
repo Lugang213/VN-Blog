@@ -3,7 +3,7 @@
 		<loading v-if = "code === 404"></loading>
 		<h3 v-if = "articles.life.length == 0&&code === 200" class = "none-article">还没有此类文章，敬请期待···</h3>
 		<article-list :articleList = "articles.life"></article-list>
-	</div>	
+	</div>
 </template>
 <script>
  	import { mapActions,mapMutations,mapState } from "vuex"
@@ -16,10 +16,10 @@
 		},
 		metaInfo(){
 			return {
-				title: "生活文章 -mapblog小站",
-				meta: [{vmid: "description",name: "description",content: "生活文章 -mapblog小站"}]
+				title: "生活文章",
+				meta: [{vmid: "description",name: "description",content: "生活文章"}]
 			}
-		},	
+		},
 		asyncData({store,route}){
 			return Promise.all([
 				store.dispatch("getArticles",{
